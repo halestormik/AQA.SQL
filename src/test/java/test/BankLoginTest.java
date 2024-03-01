@@ -71,11 +71,15 @@ public class BankLoginTest {
 
     @Test
     void shouldTestUnsuccessfulLoginWithIncorrectPasswordx3() { //ввод неправильного пароля 3 раза
+
         var authInfo = DataHelper.generateRandomUser();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
-        loginPage.validLogin(authInfo);
-        loginPage.validLogin(authInfo);
+
+        for (int count = 0; count < 3; count++){
+            loginPage.validLogin(DataHelper.generateRandomUser());
+        }
+
         verificationPage.verifyErrorNotification("Превышено максимальное количество попыток авторизации");
     }
 }

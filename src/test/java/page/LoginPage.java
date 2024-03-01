@@ -2,6 +2,7 @@ package page;
 
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
@@ -18,6 +19,8 @@ public class LoginPage {
     }
 
     public VerificationPage validLogin(DataHelper.AuthInfo info) {
+        loginField.sendKeys(Keys.CONTROL + "a" + Keys.BACK_SPACE);
+        passwordField.sendKeys(Keys.CONTROL + "a" + Keys.BACK_SPACE);
         loginField.setValue(info.getLogin());
         passwordField.setValue(info.getPassword());
         loginButton.click();
